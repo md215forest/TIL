@@ -1,14 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-const vueUrl = ref('http://vuejs.org')
+import { ref, computed } from 'vue'
 const count = ref(0)
-function countUp() {
-  // 2づつ加算する
-  count.value += 2
-}
+const evaluation = computed(() => {
+  console.log('computed evaluation')
+  return count.value > 3 ? 'Good' : 'Bad'
+})
+console.log('evaluation', evaluation.value)
 </script>
 <template>
+  <p>{{ count > 3 ? 'Good' : 'Bad' }}</p>
+  <p>{{ evaluation }}</p>
   <p>{{ count }}</p>
-  <button @click="count++">button</button>
-  <button @click="countUp">button</button>
+  <button @click="count++">+1</button>
 </template>
