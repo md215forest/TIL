@@ -1,14 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-const vueUrl = ref('http://vuejs.org')
-const count = ref(0)
-function countUp() {
-  // 2づつ加算する
-  count.value += 2
-}
+const userInput = ref('')
 </script>
 <template>
-  <p>{{ count }}</p>
-  <button @click="count++">button</button>
-  <button @click="countUp">button</button>
+  <p>{{ userInput }}</p>
+  <input v-model="userInput" type="text" />
+  <button @click="userInput = ''">button</button>
 </template>
