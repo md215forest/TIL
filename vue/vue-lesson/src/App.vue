@@ -5,6 +5,7 @@ const evaluation = computed(() => {
   console.log('computed evaluation')
   return count.value > 3 ? 'Good' : 'Bad'
 })
+evaluation.value = 'Very Good'
 console.log('evaluation', evaluation.value)
 </script>
 <template>
