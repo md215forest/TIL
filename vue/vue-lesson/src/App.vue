@@ -1,9 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-const userInput = ref('')
+import { ref, computed } from 'vue'
+const count = ref(0)
+const evaluation = computed(() => {
+  console.log('computed evaluation')
+  return count.value > 3 ? 'Good' : 'Bad'
+})
+console.log('evaluation', evaluation.value)
 </script>
 <template>
-  <p>{{ userInput }}</p>
-  <input v-model="userInput" type="text" />
-  <button @click="userInput = ''">button</button>
+  <p>{{ count > 3 ? 'Good' : 'Bad' }}</p>
+  <p>{{ evaluation }}</p>
+  <p>{{ count }}</p>
+  <button @click="count++">+1</button>
 </template>
