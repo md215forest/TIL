@@ -3,9 +3,9 @@ import { ref, computed } from 'vue'
 const count = ref(0)
 const evaluation = computed(() => {
   console.log('computed evaluation')
+  count.value = 0
   return count.value > 3 ? 'Good' : 'Bad'
 })
-evaluation.value = 'Very Good'
 console.log('evaluation', evaluation.value)
 </script>
 <template>
