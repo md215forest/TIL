@@ -1,18 +1,37 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 const count = ref(0)
-const evaluation = computed(() => {
-  console.log('computed evaluation')
-  return count.value > 3 ? 'Good' : 'Bad'
+const count1 = ref(0)
+const count2 = ref(0)
+
+watch(
+  () => {
+    console.log('watch first aruguement')
+    return count.value
+  },
+  (newValue, oldValue) => {
+    console.log('watch')
+    console.log(newValue, oldValue)
+  },
+  {
+    immediate: false,
+  },
+)
+
+watchEffect(() => {
+  console.log('watchEffect')
+  console.log(count.value)
+  setTimeout(() => {
+    console.log('after 1s')
+    console.log(count.value)
+  }, 1000)
 })
-console.log('evaluation', evaluation.value)
-function getEvaluation() {
-  console.log(evaluation.value)
-}
 </script>
 <template>
-  <p>{{ count > 3 ? 'Good' : 'Bad' }}</p>
   <p>{{ count }}</p>
-  <button @click="count++">+1</button>
-  <button @click="getEvaluation">get Evaluation</button>
+  <p>{{ count1 }}</p>
+  <p>{{ count2 }}</p>
+  <button @click="count++">Increment</button>
+  <button @click="count1++">Increment 1</button>
+  <button @click="count2++">Increment 2</button>
 </template>
